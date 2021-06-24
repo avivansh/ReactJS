@@ -1,13 +1,13 @@
 import React,{useState,useEffect} from 'react';
-
+import PDP from '../PDP';
 const Cart = ({id,name}) => {
     console.log("cart is been called")
     const [cart, updateCartItems]= useState([])
-    
+    cart.push(name)
+    console.log(cart.length)
     return (  
         <>
-        <h1> Welcome to the cart</h1>
-        <h1> {name}</h1>
+            {cart.length&& cart.map((name)=> <h1>{name}</h1>)}
         </>
     );
 }
