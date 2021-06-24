@@ -11,8 +11,9 @@ import Topbar from './components/Topbar';
 const App = () => {
   return (
     <div>
-      <Topbar/>
-      <Footer/>
+      {/* <Topbar/>
+      <Footer/> */}
+      <PlacesGrid/>
     </div>
   )
 }
