@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
 
+import Cart from "../Cart";
+
 const PDP = (props) => {
   const [product, setProduct] = useState({});
   //   const { id } = useParams();
@@ -18,29 +20,38 @@ const PDP = (props) => {
   }, []);
   return (
     <>
+    
       <div className="container">
           <div className="left">
               <img src={preview} width="500"/>
           </div>
 
           <div className="right">
+            
               <h1>{name}</h1>
               <h3>{brand}</h3>
               <h3 className="price">{price}</h3>
               <p className="desc">{description}</p>
                 <div className="photos">
                 {
+                  photos.map((photo)=>
+                    <>
+                    <img src={photo} className="ind_photo" onClick={()=>{
+                      console.log("I want to get bigger")
 
-                    photos.map((photo)=>
-
-                       <>
-                        <img src={photo} className="ind_photo"/>
-                        </>
+                      // is there any better method to change it since only preview is changing
+                      setProduct({preview:photo,name:name,brand:brand,description:description,price:price,photos:photos})
+                    }
+                    }/>
+                    
+                    </>
                     )
-                }
+                  }
               </div>
 
-              <button class="add_to_cart">Add to cart</button>
+              <button class="add_to_cart" onClick={()=>{
+                <Cart id={productId} name={name}/>}
+              }>Add to cart</button>
           </div>
       </div>
     </>

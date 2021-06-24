@@ -16,6 +16,10 @@ import PDP from './components/PDP'
 import PLP from './components/PLP'
 import { BrowserRouter,Switch,Route } from 'react-router-dom';
 
+//FCSM--Functional component state management
+import FCSM from './components/FCSM';
+import Products from './components/products';
+
 const App = () => {
 
   const path=process.env.PUBLIC_URL
@@ -36,6 +40,9 @@ const App = () => {
       </Switch>
       <Footer/>
       </BrowserRouter>
+      
+      {/* <FCSM/> basically a use case of the functional component state management */}
+      {/* <Products/> */}
     </div>
   )
 }
