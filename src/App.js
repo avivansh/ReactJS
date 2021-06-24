@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div>
       <Topbar/>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   )
 }
