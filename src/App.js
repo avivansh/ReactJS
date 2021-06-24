@@ -7,13 +7,18 @@ import React from 'react';
 import Footer from './components/Footer'
 import PlacesGrid from './components/PlacesGrid';
 import Topbar from './components/Topbar';
+import Cards from './components/Topbar/cards';
 
+import Jumbotron from './components/Topbar/jumbotron';
 const App = () => {
   return (
     <div>
-      {/* <Topbar/>
-      <Footer/> */}
+      
       <PlacesGrid/>
+      
+      <Jumbotron/>
+
+      <Cards/>
     </div>
   )
 }

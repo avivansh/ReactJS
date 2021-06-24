@@ -1,4 +1,4 @@
-.heading {
+/* .heading {
   margin-left: 90px;
 }
 
@@ -69,4 +69,22 @@
   text-align: center;
   margin-bottom: 80px;
   margin-top: 0;
+} */
+
+.card_cont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  max-width: 15%;
+  margin: 20px;
+}
+
+.desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
