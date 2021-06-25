@@ -107,3 +107,9 @@
   margin: 50px 0;
   padding: 10px 20px;
 }
+
+.border_image {
+  border: 3px solid green;
+  width: 100px;
+  margin: 10px;
+}

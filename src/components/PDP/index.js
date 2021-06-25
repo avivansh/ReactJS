@@ -8,6 +8,7 @@ import { getProducts, addToCart } from "../../redux/actions";
 
 const PDP = ({updateCart}) => {
   const [product, setProduct] = useState({});
+  const [active_photo,setActivePhoto]=useState(0)
  
   const { id } = useParams();
   // const { id } = props.match.params;
@@ -21,10 +22,6 @@ const PDP = ({updateCart}) => {
       .then((res) => setProduct(res.data))
       .catch((err) => alert(err));
   }, []);
-  
-  const curr_photo_index=0
-  const last_phot_index=0
-  const style={border:"none"}
   return (
 
     <>
@@ -47,10 +44,10 @@ const PDP = ({updateCart}) => {
                     
                     <div className="p-1 ">
                     
-                    <img src={photo} className="ind_photo" onClick={()=>{
+                    <img src={photo} className={index===active_photo?"border_image":"ind_photo"} onClick={()=>{
                       
                       
-                      
+                      setActivePhoto(index)
                       setProduct({...product, preview:photo})
                        
                     }
