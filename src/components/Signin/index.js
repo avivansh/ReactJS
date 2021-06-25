@@ -26,6 +26,7 @@ const SignIn = () => {
             <input
             type="text"
             value={username}
+            placeholder="vansh"
             onChange={(e) => setUsername(e.target.value)} className="form-align"
             />
             <br/>
@@ -34,16 +35,16 @@ const SignIn = () => {
             <input
             type="text"
             value={password}
+            placeholder="mittal"
             onChange={(e) => setPassword(e.target.value)}
             />
             <br/>
             <input type="submit" className="submit"/>
             </form>
-        </div>
-        
+        </div>        
 
-        </>
-    );
+      </>
+    )
 }
  
 export default SignIn;

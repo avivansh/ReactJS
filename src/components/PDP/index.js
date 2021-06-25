@@ -13,7 +13,7 @@ const PDP = ({updateCart}) => {
   // const { id } = props.match.params;
   const url = "https://5d76bf96515d1a0014085cf9.mockapi.io/product/";
 
-  const { productId = "", name = "", preview = "", brand = "", photos =[], description = "", price="" } = product;
+  const { productId = "", name = "", preview = "", brand = "", photos =[], description = "", price=""} = product;
 
   //component did mount
   useEffect(() => {
@@ -21,7 +21,12 @@ const PDP = ({updateCart}) => {
       .then((res) => setProduct(res.data))
       .catch((err) => alert(err));
   }, []);
+  
+  const curr_photo_index=0
+  const last_phot_index=0
+  const style={border:"none"}
   return (
+
     <>
     
       <div className="container">
@@ -29,22 +34,29 @@ const PDP = ({updateCart}) => {
               <img src={preview} width="500"/>
           </div>
 
-          <div className="right">
+          <div className="right" className="m-5">
             
               <h1>{name}</h1>
               <h3>{brand}</h3>
-              <h3 className="price">{price}</h3>
+              <h3 className="price">{price}/-</h3>
               <p className="desc">{description}</p>
-                <div className="photos">
+                <div className="photos" className="d-flex flex-row">
                 {
-                  photos.map((photo)=>
+                  photos.map((photo,index)=>
                     <>
+                    
+                    <div className="p-1 ">
+                    
                     <img src={photo} className="ind_photo" onClick={()=>{
-                      // is there any better method to change it since only preview is changing
-                      // setProduct({preview:photo,name:name,brand:brand,description:description,price:price,photos:photos})
-                       setProduct({...product, preview:photo})
+                      
+                      
+                      
+                      setProduct({...product, preview:photo})
+                       
                     }
                     }/>
+                    </div>
+    
                     
                     </>
                     )
