@@ -18,7 +18,7 @@ const Cart = (props) => {
                 <div className="ind_cart_prod">
                     <h1>{name}</h1>
                     <h3 className="m-4">Rs. {price}/-</h3>
-                    <h3 className="m-4">{quantity}</h3>
+                    <h3 className="m-4">X {quantity}</h3>
                     <h3 className="m-4">Rs. {price*quantity}/-</h3>
                 </div>
                 )

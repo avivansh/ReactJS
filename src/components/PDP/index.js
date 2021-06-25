@@ -1,17 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Cart from "../Cart";
+import { connect } from "react-redux";
+import { getProducts, addToCart } from "../../redux/actions";
 
-const PDP = (props) => {
+const PDP = ({updateCart}) => {
   const [product, setProduct] = useState({});
-  const [btnClicked, changeBtnState] =useState(false)
-  //   const { id } = useParams();
-  const { id } = props.match.params;
+ 
+  const { id } = useParams();
+  // const { id } = props.match.params;
   const url = "https://5d76bf96515d1a0014085cf9.mockapi.io/product/";
 
-  const { id: productId = "", name = "", preview = "", brand = "", photos =[], description = "", price="" } = product;
+  const { productId = "", name = "", preview = "", brand = "", photos =[], description = "", price="" } = product;
 
   //component did mount
   useEffect(() => {
@@ -39,7 +41,8 @@ const PDP = (props) => {
                     <>
                     <img src={photo} className="ind_photo" onClick={()=>{
                       // is there any better method to change it since only preview is changing
-                      setProduct({preview:photo,name:name,brand:brand,description:description,price:price,photos:photos})
+                      // setProduct({preview:photo,name:name,brand:brand,description:description,price:price,photos:photos})
+                       setProduct({...product, preview:photo})
                     }
                     }/>
                     
@@ -49,17 +52,26 @@ const PDP = (props) => {
               </div>
 
               <button className="add_to_cart" onClick={()=>{
-                console.log("btn clicked");
-                changeBtnState(true)
+                updateCart({ preview, name, description,id,price })
+                
               }}>Add to cart</button>
 
           </div>
       </div>
 
-      {btnClicked && <Cart id={productId} name={name}/>}
     </>
   );
 };
 
-export default PDP;
+const mapStateToProps = (store) => ({
+  products: store.products,
+  cart: store.cart
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  sendProducts: (payload) => dispatch(getProducts(payload)),
+  updateCart:   (payload)=> dispatch(addToCart(payload))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PDP);
 
