@@ -206,6 +206,6 @@ td {
   color: black;
 } */
 a {
-  color: initial;
+  color: initial !important;
   text-decoration: none !important;
 }

@@ -14,6 +14,8 @@ import Cards from './components/Topbar/cards';
 import Jumbotron from './components/Topbar/jumbotron';
 import PDP from './components/PDP'
 import PLP from './components/PLP'
+import SignIn from './components/Signin';
+import SignUp from './components/Signup';
 import { BrowserRouter,Switch,Route } from 'react-router-dom';
 
 //FCSM--Functional component state management
@@ -36,6 +38,8 @@ const App = () => {
         <Route path ={`${path}/contact`} component={Contact}/>
         <Route path ={`${path}/products`} exact component={PLP}/>
         <Route path ={`${path}/products/:id`} component={PDP}/>
+        <Route path ={`${path}/signin`} component={SignIn}/>
+        <Route path ={`${path}/signup`} component={SignUp}/>
         <Route component={()=><h1>404</h1>}/>
       </Switch>
       <Footer/>

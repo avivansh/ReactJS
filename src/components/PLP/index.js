@@ -2,8 +2,13 @@ import React, { Fragment, useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../Topbar/Topbar.module.css"
 import { Link } from "react-router-dom";
+//Redux
+import { connect } from "react-redux";
+import { getProducts, addToCart } from "../../redux/actions";
 
-const Card = ({ preview, name, description,id }) => {
+
+const Card = ({ price,preview, name, description,id,updateCart,products }) => {
+  const [count,setCount]=useState(0)
   return (
     <>
       <div className="card" styles="width: 18rem;" className={styles.card} key={id}>
@@ -18,23 +23,27 @@ const Card = ({ preview, name, description,id }) => {
           <p className="card-text" className={styles.desc}>
             {description}
           </p>
-          <a href="#" class="btn btn-primary">
-            Add to cart
-          </a>
         </div>
         </Link>
+        <button class="btn btn-success" onClick={
+          ()=>{ 
+
+            updateCart({ preview, name, description,id,price })
+              }
+        }>
+          Add to cart
+          </button>
       </div>
     </>
   );
 };
 
-const PLP = () => {
-  const [products, setProducts] = useState([]);
-
+const PLP = ({products,sendProducts,updateCart}) => {
+  
   useEffect(() => {
     axios("https://5d76bf96515d1a0014085cf9.mockapi.io/product")
       .then((res) => {
-        setProducts(res.data);
+        sendProducts(res.data);
       })
       .catch((err) => alert(err));
   }, []);
@@ -42,13 +51,23 @@ const PLP = () => {
   return (
     <div className={styles.card_cont}>
       {products.length &&
-        products.map(({ name, preview, description,id }) => (
+        products.map(({ name, preview, description,id,price }) => (
           <>
-            <Card preview={preview} name={name} description={description} id={id} />
+            <Card price={price} preview={preview} name={name} description={description} id={id} updateCart={updateCart} products={products}/>
           </>
         ))}
     </div>
   );
 };
 
-export default PLP;
+const mapStateToProps = (store) => ({
+  products: store.products,
+  cart: store.cart
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  sendProducts: (payload) => dispatch(getProducts(payload)),
+  updateCart:   (payload)=> dispatch(addToCart(payload))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PLP);

@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getProducts, addToCart } from "../../redux/actions";
 
-const Topbar = () => {
+const Topbar = ({cart,products}) => {
   const path=process.env.PUBLIC_URL
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-light p-2">
       <a className="navbar-brand" href="#">
         Ally React
       </a>
@@ -39,7 +41,7 @@ const Topbar = () => {
           <li className="nav-item">
             {/* <Link to="/cart" className="nav-link"> */}
             <Link to={`${path}/cart`} className="nav-link">
-              Cart
+              Cart<sup>{cart.length}</sup>
             </Link>
             {/* </Link> */}
           </li>
@@ -48,10 +50,26 @@ const Topbar = () => {
               Products Listing Page
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to={`${path}/signin`} className="nav-link">
+              Sign-In
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={`${path}/signup`} className="nav-link">
+              Sign-up
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
   );
 };
 
-export default Topbar;
+const mapStateToProps = (store) => ({
+  products: store.products,
+  cart: store.cart
+});
+
+
+export default connect(mapStateToProps, null)(Topbar);
