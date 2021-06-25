@@ -60,6 +60,11 @@ const Topbar = ({cart,products}) => {
               Sign-up
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to={`${path}/movies`} className="nav-link">
+              Movies
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

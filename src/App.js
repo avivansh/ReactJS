@@ -17,7 +17,7 @@ import PLP from './components/PLP'
 import SignIn from './components/Signin';
 import SignUp from './components/Signup';
 import { BrowserRouter,Switch,Route } from 'react-router-dom';
-
+import Movies from './components/Movies';
 //FCSM--Functional component state management
 import FCSM from './components/FCSM';
 import Products from './components/products';
@@ -40,6 +40,7 @@ const App = () => {
         <Route path ={`${path}/products/:id`} component={PDP}/>
         <Route path ={`${path}/signin`} component={SignIn}/>
         <Route path ={`${path}/signup`} component={SignUp}/>
+        <Route path ={`${path}/movies`} component={Movies}/>
         <Route component={()=><h1>404</h1>}/>
       </Switch>
       <Footer/>
