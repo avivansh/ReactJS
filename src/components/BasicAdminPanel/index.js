@@ -16,12 +16,11 @@ const Admin = () => {
   const [orginalList, setOrignalList] = useState([]);
   const [active, setActive] = useState(-1);
   useEffect(() => {
-    console.log("why are u coming again and again");
     axios(
       "http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D"
     ).then((res) => {
       setOrignalList(res.data);
-      console.log(orginalList);
+
       setList(res.data);
     });
   }, []);
@@ -30,37 +29,14 @@ const Admin = () => {
     <>
       <main>
         <div id="table-section">
-          <form>
-            <input
-              type="text"
-              placeholder="Enter something"
-              id="search-box"
-              className="search"
-              onChange={(e) => {
-                setValue(e.target.value);
-              }}
-            />
-            <button
-              className="btn-search"
-              onClick={() => {
-                console.log(value);
-                value.length !== 0
-                  ? setList(
-                      list.filter(
-                        ({ firstName, lastName, email, phone }) =>
-                          firstName.includes(value) ||
-                          lastName.includes(value) ||
-                          email.includes(value) ||
-                          phone.includes(value)
-                      )
-                    )
-                  : setList(orginalList);
-              }}
-            >
-              search
-            </button>
-          </form>
-
+          <input
+            type="text"
+            placeholder="Enter something....."
+            className="search"
+            onChange={(e) => {
+              setValue(e.target.value);
+            }}
+          />
           <div id="table-wrapper">
             <div id="table-headers">
               <table>
@@ -79,42 +55,60 @@ const Admin = () => {
             <div id="table-data">
               <table>
                 <tbody>
-                  {list.map(
-                    (
-                      {
-                        firstName,
-                        lastName,
-                        email,
-                        phone,
-                        id,
-                        description,
-                        address,
-                      },
-                      i
-                    ) => (
-                      <tr
-                        className={i === active && "color_row"}
-                        onClick={(e) => {
-                          setActive(i);
-                          setDetail({
-                            first: firstName,
-                            last: lastName,
-                            desc: description,
-                            streetadd: address.streetAddress,
-                            zipcode: address.zip,
-                            stte: address.state,
-                            cty: address.city,
-                          });
-                        }}
-                      >
-                        <td className="column1">{id}</td>
-                        <td className="column2">{firstName}</td>
-                        <td className="column3">{lastName}</td>
-                        <td className="column4">{email}</td>
-                        <td className="column5">{phone}</td>
-                      </tr>
-                    )
-                  )}
+                  {orginalList
+                    .filter((item) => {
+                      if (value === "") return item;
+                      else if (
+                        item.firstName
+                          .toLowerCase()
+                          .includes(value.toLowerCase()) ||
+                        item.lastName
+                          .toLowerCase()
+                          .includes(value.toLowerCase()) ||
+                        item.phone.toLowerCase().includes(value.toLowerCase())
+                      )
+                        return item;
+                    })
+                    .map(
+                      (
+                        {
+                          firstName,
+                          lastName,
+                          email,
+                          phone,
+                          id,
+                          description,
+                          address,
+                        },
+                        i
+                      ) => (
+                        <tr
+                          onClick={(e) => {
+                            setActive(i);
+                            setDetail({
+                              first: firstName,
+                              last: lastName,
+                              desc: description,
+                              streetadd: address.streetAddress,
+                              zipcode: address.zip,
+                              stte: address.state,
+                              cty: address.city,
+                            });
+                          }}
+                          style={
+                            active === i
+                              ? { background: "pink" }
+                              : { background: "" }
+                          }
+                        >
+                          <td className="column1">{id}</td>
+                          <td className="column2">{firstName}</td>
+                          <td className="column3">{lastName}</td>
+                          <td className="column4">{email}</td>
+                          <td className="column5">{phone}</td>
+                        </tr>
+                      )
+                    )}
                 </tbody>
               </table>
             </div>
@@ -131,7 +125,7 @@ const Admin = () => {
             <div>
               <b>Description: </b>
               <br />
-              <p>{detail.desc}</p>
+              <p className="desc">{detail.desc}</p>
             </div>
             <div>
               <b>Address:</b> {detail.streetadd}

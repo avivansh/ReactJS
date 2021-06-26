@@ -210,9 +210,14 @@ td {
   background-color: pink;
 }
 
-.btn-search {
-  padding: 5px 10px;
-  background-color: rgb(2, 12, 2);
-  color: white;
-  border: 5px sold black;
+.search {
+  border: 2px solid rgba(0, 0, 0, 0.664);
+  margin-bottom: 20px;
+  height: 50px;
+  padding-left: 10px;
+}
+
+.desc {
+  border: 2px solid rgba(0, 0, 0, 0.664);
+  padding: 5px;
 }
