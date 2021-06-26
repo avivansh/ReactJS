@@ -12,12 +12,16 @@ const Admin = () => {
     stte: "",
     cty: "",
   });
-
-  const [count, setCount] = useState(0);
+  const [value, setValue] = useState("");
+  const [orginalList, setOrignalList] = useState([]);
+  const [active, setActive] = useState(-1);
   useEffect(() => {
+    console.log("why are u coming again and again");
     axios(
       "http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D"
     ).then((res) => {
+      setOrignalList(res.data);
+      console.log(orginalList);
       setList(res.data);
     });
   }, []);
@@ -26,13 +30,35 @@ const Admin = () => {
     <>
       <main>
         <div id="table-section">
-          <form action="/">
+          <form>
             <input
               type="text"
               placeholder="Enter something"
-              name="search-box"
               id="search-box"
+              className="search"
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
             />
+            <button
+              className="btn-search"
+              onClick={() => {
+                console.log(value);
+                value.length !== 0
+                  ? setList(
+                      list.filter(
+                        ({ firstName, lastName, email, phone }) =>
+                          firstName.includes(value) ||
+                          lastName.includes(value) ||
+                          email.includes(value) ||
+                          phone.includes(value)
+                      )
+                    )
+                  : setList(orginalList);
+              }}
+            >
+              search
+            </button>
           </form>
 
           <div id="table-wrapper">
@@ -54,18 +80,22 @@ const Admin = () => {
               <table>
                 <tbody>
                   {list.map(
-                    ({
-                      firstName,
-                      lastName,
-                      email,
-                      phone,
-                      id,
-                      description,
-                      address,
-                    }) => (
+                    (
+                      {
+                        firstName,
+                        lastName,
+                        email,
+                        phone,
+                        id,
+                        description,
+                        address,
+                      },
+                      i
+                    ) => (
                       <tr
-                        className="data-row"
+                        className={i === active && "color_row"}
                         onClick={(e) => {
+                          setActive(i);
                           setDetail({
                             first: firstName,
                             last: lastName,

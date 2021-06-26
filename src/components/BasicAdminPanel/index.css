@@ -205,3 +205,14 @@ td {
 .active td {
   color: black;
 }
+
+.color_row {
+  background-color: pink;
+}
+
+.btn-search {
+  padding: 5px 10px;
+  background-color: rgb(2, 12, 2);
+  color: white;
+  border: 5px sold black;
+}
