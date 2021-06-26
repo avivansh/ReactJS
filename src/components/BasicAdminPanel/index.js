@@ -3,14 +3,14 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 const Admin = () => {
   const [list, setList] = useState([]);
-  const [details, setDetails] = useState({
+  const [detail, setDetail] = useState({
     id: "",
     firstName: "",
     lastName: "",
     description: "",
     address: { streetAddress: "", zip: "", city: "", state: "" },
   });
-  let count = 0;
+  const [count, setCount] = useState(0);
   useEffect(() => {
     axios(
       "http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D"
@@ -18,7 +18,18 @@ const Admin = () => {
       setList(res.data);
     });
   }, []);
-
+  const handleClick = (e) => {
+    setCount(count + 1);
+    setDetail({
+      first: "",
+      last: "",
+      desc: "",
+      streetadd: "",
+      zipcode: "",
+      stte: "",
+      cty: "",
+    });
+  };
   return (
     <>
       <main>
@@ -29,7 +40,6 @@ const Admin = () => {
               placeholder="Enter something"
               name="search-box"
               id="search-box"
-              value=""
             />
           </form>
 
@@ -60,7 +70,7 @@ const Admin = () => {
                       id,
                       description,
                     }) => (
-                      <tr className="data-row" onClick={++count}>
+                      <tr className="data-row" onClick={handleClick}>
                         <td className="column1">{id}</td>
                         <td className="column2">{firstName}</td>
                         <td className="column3">{lastName}</td>
@@ -80,25 +90,22 @@ const Admin = () => {
           <p>Click on a table item to get detailed information</p>
           <div>
             <div>
-              <b>User selected:</b> Marcellin Shrestha
+              <b>User selected:</b> {detail.first} {detail.last}
             </div>
             <div>
               <b>Description: </b>
               <textarea cols="50" rows="5" readonly="true">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Eligendi, quia nihil. Est, illum minima libero rerum, nihil
-                distinctio placeat sint nam quae repellendus obcaecati delectus
-                totam non odio. Sint, reprehenderit?
+                {detail.description}
               </textarea>
             </div>
             <div>
-              <b>Address:</b> 6480 Nec Ct
+              <b>Address:</b> {detail.streetadd}
             </div>
             <div>
-              <b>City:</b> Dinwiddie
+              <b>City:</b> {detail.cty}
             </div>
             <div>
-              <b>State:</b> NV
+              <b>State:</b> {detail.ste}
             </div>
             <div>
               <b>Zip:</b> 91295
