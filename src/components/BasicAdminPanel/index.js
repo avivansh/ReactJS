@@ -4,12 +4,15 @@ import "./index.css";
 const Admin = () => {
   const [list, setList] = useState([]);
   const [detail, setDetail] = useState({
-    id: "",
-    firstName: "",
-    lastName: "",
-    description: "",
-    address: { streetAddress: "", zip: "", city: "", state: "" },
+    first: "",
+    last: "",
+    desc: "",
+    streetadd: "",
+    zipcode: "",
+    stte: "",
+    cty: "",
   });
+
   const [count, setCount] = useState(0);
   useEffect(() => {
     axios(
@@ -18,18 +21,7 @@ const Admin = () => {
       setList(res.data);
     });
   }, []);
-  const handleClick = (e) => {
-    setCount(count + 1);
-    setDetail({
-      first: "",
-      last: "",
-      desc: "",
-      streetadd: "",
-      zipcode: "",
-      stte: "",
-      cty: "",
-    });
-  };
+
   return (
     <>
       <main>
@@ -69,8 +61,22 @@ const Admin = () => {
                       phone,
                       id,
                       description,
+                      address,
                     }) => (
-                      <tr className="data-row" onClick={handleClick}>
+                      <tr
+                        className="data-row"
+                        onClick={(e) => {
+                          setDetail({
+                            first: firstName,
+                            last: lastName,
+                            desc: description,
+                            streetadd: address.streetAddress,
+                            zipcode: address.zip,
+                            stte: address.state,
+                            cty: address.city,
+                          });
+                        }}
+                      >
                         <td className="column1">{id}</td>
                         <td className="column2">{firstName}</td>
                         <td className="column3">{lastName}</td>
@@ -94,9 +100,8 @@ const Admin = () => {
             </div>
             <div>
               <b>Description: </b>
-              <textarea cols="50" rows="5" readonly="true">
-                {detail.description}
-              </textarea>
+              <br />
+              <p>{detail.desc}</p>
             </div>
             <div>
               <b>Address:</b> {detail.streetadd}
@@ -105,13 +110,10 @@ const Admin = () => {
               <b>City:</b> {detail.cty}
             </div>
             <div>
-              <b>State:</b> {detail.ste}
+              <b>State:</b> {detail.stte}
             </div>
             <div>
-              <b>Zip:</b> 91295
-            </div>
-            <div>
-              <b>Count:</b> {count}
+              <b>Zip:</b> {detail.zipcode}
             </div>
           </div>
         </div>
