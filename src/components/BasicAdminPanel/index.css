@@ -10,6 +10,7 @@ body {
   margin: 0;
   font-family: "Lato", sans-serif;
 }
+
 #overlay {
   position: fixed;
   left: 0;
@@ -83,7 +84,6 @@ h1 {
 }
 
 #info-content {
-  display: none;
   margin-top: 10px;
 }
 
@@ -204,8 +204,4 @@ td {
 
 .active td {
   color: black;
-}
-a {
-  color: initial !important;
-  text-decoration: none !important;
 }

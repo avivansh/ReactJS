@@ -65,6 +65,11 @@ const Topbar = ({cart,products}) => {
               Movies
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to={`${path}/adminpanel`} className="nav-link">
+              Admin Panel
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

@@ -21,7 +21,7 @@ import Movies from './components/Movies';
 //FCSM--Functional component state management
 import FCSM from './components/FCSM';
 import Products from './components/products';
-
+import Admin from './components/BasicAdminPanel';
 const App = () => {
 
   const path=process.env.PUBLIC_URL
@@ -41,6 +41,7 @@ const App = () => {
         <Route path ={`${path}/signin`} component={SignIn}/>
         <Route path ={`${path}/signup`} component={SignUp}/>
         <Route path ={`${path}/movies`} component={Movies}/>
+        <Route path ={`${path}/adminpanel`} component={Admin}/>
         <Route component={()=><h1>404</h1>}/>
       </Switch>
       <Footer/>
