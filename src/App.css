@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,7 +35,7 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 .heading {
   font-size: 100px;
@@ -79,15 +79,16 @@
 }
 
 .submit {
+  width: 10%;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.form {
+/* .form {
   margin: 5% 25%;
   box-sizing: border-box;
   padding-left: 22%;
-}
+} */
 
 .cart_container {
   display: flex;
@@ -116,4 +117,27 @@
   border: 3px solid green;
   width: 100px;
   margin: 10px;
+}
+
+.movies_input {
+  border: 1px solid green;
+  width: 30%;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.sign_in_input {
+  width: 20% !important;
+  border: 2px solid green !important;
+  padding: 0 auto;
+  margin-bottom: 0;
+}
+
+.form-container {
+  margin: 0 auto;
+  border: 2px solid black;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

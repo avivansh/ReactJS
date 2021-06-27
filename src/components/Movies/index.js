@@ -40,7 +40,7 @@ class Movies extends React.Component{
                 </div>
 
                <div className={styles.search}>
-                    <input type="text" value={this.state.value} onChange={this.handleChange}></input>
+                    <input type="text" value={this.state.value} onChange={this.handleChange} className="movies_input"></input>
                     <button className={styles.search_btn} onClick={
                         ()=>{
     

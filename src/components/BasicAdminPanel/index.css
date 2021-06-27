@@ -47,17 +47,6 @@ a {
   text-decoration: none;
 }
 
-form {
-  border: 1px solid black;
-  width: 230px;
-  padding: 6px 10px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
-
 button,
 input,
 textarea {

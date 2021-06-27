@@ -19,15 +19,16 @@ const SignIn = () => {
         {isUser && <Redirect to={`${path}/products`}/>}
         <h1 style={{textAlign:"center"}}> Sign in</h1>
         <hr/>
-        <div className="form">
-            <form onSubmit={handleSubmit}>
+        <div className="form-container">
+            {/* <form onSubmit={handleSubmit}> */}
             <label>User Name</label>
-            <br/>
+            
             <input
             type="text"
             value={username}
             placeholder="vansh"
-            onChange={(e) => setUsername(e.target.value)} className="form-align"
+            onChange={(e) => setUsername(e.target.value)}
+            className="sign_in_input"
             />
             <br/>
             <label>Password</label>
@@ -37,10 +38,11 @@ const SignIn = () => {
             value={password}
             placeholder="mittal"
             onChange={(e) => setPassword(e.target.value)}
+            className="sign_in_input"
             />
             <br/>
-            <input type="submit" className="submit"/>
-            </form>
+            <input type="submit" className="submit" onClick={handleSubmit}/>
+            {/* </form> */}
         </div>        
 
       </>
