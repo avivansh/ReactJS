@@ -28,7 +28,7 @@ const PDP = ({updateCart}) => {
     
       <div className="container">
           <div className="left">
-              <img src={preview} width="500"/>
+              <img src={preview} className="preview_photo"/>
           </div>
 
           <div className="right" className="m-5">

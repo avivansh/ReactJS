@@ -122,7 +122,7 @@ const Admin = () => {
             <div>
               <b>Description: </b>
               <br />
-              <p className="desc">{detail.desc}</p>
+              <p className="descr">{detail.desc}</p>
             </div>
             <div>
               <b>Address:</b> {detail.streetadd}
