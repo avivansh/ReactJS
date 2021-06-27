@@ -47,7 +47,7 @@ const Topbar = ({cart,products}) => {
           </li>
           <li className="nav-item">
             <Link to={`${path}/products`} className="nav-link">
-              Products Listing Page
+              Shoplane Project
             </Link>
           </li>
           <li className="nav-item">
