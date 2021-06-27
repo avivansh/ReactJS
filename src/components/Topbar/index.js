@@ -39,18 +39,6 @@ const Topbar = ({cart,products}) => {
             </Link>
           </li>
           <li className="nav-item">
-            {/* <Link to="/cart" className="nav-link"> */}
-            <Link to={`${path}/cart`} className="nav-link">
-              Cart<sup>{cart.length}</sup>
-            </Link>
-            {/* </Link> */}
-          </li>
-          <li className="nav-item">
-            <Link to={`${path}/products`} className="nav-link">
-              Shoplane Project
-            </Link>
-          </li>
-          <li className="nav-item">
             <Link to={`${path}/signin`} className="nav-link">
               Sign-In
             </Link>
@@ -70,6 +58,20 @@ const Topbar = ({cart,products}) => {
               Admin Panel
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to={`${path}/products`} className="nav-link">
+              Shoplane Project
+            </Link>
+          </li>
+          <li className="nav-item">
+            {/* <Link to="/cart" className="nav-link"> */}
+            <Link to={`${path}/cart`} className="nav-link">
+              Cart<sup>{cart.length}</sup>
+            </Link>
+            {/* </Link> */}
+          </li>
+          
+          
         </ul>
       </div>
     </nav>
